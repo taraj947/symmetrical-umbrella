@@ -12,10 +12,10 @@
 
 :root {
   /* colors */
-  --background-color: grey;
+  --background-color: rgb(169, 240, 234);
   --light-color: #f8f8f8;
   --dark-color: #505050;
-  --text-color: red;
+  --text-color: rgb(203, 94, 187);
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 
