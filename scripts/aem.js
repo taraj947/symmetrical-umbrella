@@ -477,6 +477,25 @@ function decorateSections(main) {
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
+
+    const metadata = section.querySelector(':scope > .section-metadata');
+    if (metadata) {
+      metadata.querySelectorAll(':scope > div').forEach((row) => {
+        const cells = [...row.children];
+        if (cells.length < 2) return;
+
+        const key = cells[0].textContent.trim().toLowerCase();
+        const value = cells[1].textContent.trim().toLowerCase();
+        if (!key || !value) return;
+
+        const normalizedValue = value.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        if (['background', 'style', 'text', 'layout'].includes(key) && normalizedValue) {
+          section.classList.add(normalizedValue);
+          section.classList.add(`${key}-${normalizedValue}`);
+        }
+      });
+    }
+
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
   });
