@@ -102,11 +102,17 @@ export default function decorate(block) {
   if (videoCell) {
     const videoLink = videoCell.querySelector('a[href]') || videoCell.querySelector('iframe') || videoCell.querySelector('video');
     if (videoLink) {
-      const embedHtml = videoLink instanceof HTMLIFrameElement
-        ? `<div class="imagevideo-embed"><iframe src="${videoLink.src}" title="Embedded video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
-        : videoLink instanceof HTMLVideoElement
-          ? `<div class="imagevideo-embed"><video controls playsinline preload="metadata"><source src="${videoLink.currentSrc || videoLink.querySelector('source')?.src || ''}" type="video/${(videoLink.currentSrc || videoLink.querySelector('source')?.src || '').split('.').pop().toLowerCase()}"></video></div>`
-          : getVideoEmbed(videoLink.href);
+      let embedHtml = '';
+
+      if (videoLink instanceof HTMLIFrameElement) {
+        embedHtml = `<div class="imagevideo-embed"><iframe src="${videoLink.src}" title="Embedded video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+      } else if (videoLink instanceof HTMLVideoElement) {
+        const videoSource = videoLink.currentSrc || videoLink.querySelector('source')?.src || '';
+        const videoType = videoSource.split('.').pop().toLowerCase();
+        embedHtml = `<div class="imagevideo-embed"><video controls playsinline preload="metadata"><source src="${videoSource}" type="video/${videoType}"></video></div>`;
+      } else {
+        embedHtml = getVideoEmbed(videoLink.href);
+      }
 
       videoWrap.innerHTML = embedHtml || '<div class="imagevideo-embed"></div>';
     } else {
