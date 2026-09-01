@@ -317,16 +317,17 @@ main > .section:first-of-type {
 }
 
 /* section metadata */
-main .section.light,
-main .section.highlight,
-main .section.tan,
-main .section.background-tan {
-  background-color: var(--light-color);
+main .section[data-background] {
+  background-color: var(--section-background-color, var(--light-color));
   margin: 0;
   padding: 40px 0;
 }
 
-main .section.tan,
-main .section.background-tan {
-  background-color: #e8dcc1;
+main .section[data-background="light"],
+main .section[data-background="highlight"] {
+  --section-background-color: var(--light-color);
+}
+
+main .section[data-background="tan"] {
+  --section-background-color: #e8dcc1;
 }

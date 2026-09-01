@@ -485,13 +485,12 @@ function decorateSections(main) {
         if (cells.length < 2) return;
 
         const key = cells[0].textContent.trim().toLowerCase();
-        const value = cells[1].textContent.trim().toLowerCase();
+        const value = cells[1].textContent.trim();
         if (!key || !value) return;
 
-        const normalizedValue = value.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        if (['background', 'style', 'text', 'layout'].includes(key) && normalizedValue) {
-          section.classList.add(normalizedValue);
-          section.classList.add(`${key}-${normalizedValue}`);
+        if (key === 'background' || key === 'background-color') {
+          section.dataset.background = value;
+          section.style.setProperty('--section-background-color', value);
         }
       });
     }
