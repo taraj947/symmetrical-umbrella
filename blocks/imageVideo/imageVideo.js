@@ -90,9 +90,9 @@ export default function decorate(block) {
   }) || block;
 
   const imageWrap = document.createElement('div');
-  imageWrap.className = 'imagevideo__image';
+  imageWrap.className = 'imagevideo-image';
   const videoWrap = document.createElement('div');
-  videoWrap.className = 'imagevideo__video';
+  videoWrap.className = 'imagevideo-video';
 
   if (imageCell && imageCell !== videoCell) {
     enhanceImage(imageCell);
@@ -124,7 +124,7 @@ export default function decorate(block) {
   }
 
   const layout = document.createElement('div');
-  layout.className = 'imagevideo__layout';
+  layout.className = 'imagevideo-layout';
   layout.append(imageWrap, videoWrap);
   block.replaceChildren(layout);
 }
