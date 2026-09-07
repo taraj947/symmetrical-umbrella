@@ -1,0 +1,41 @@
+.item-list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.item-list-items > li {
+  border: 1px solid #dadada;
+  background-color: var(--background-color);
+  padding: 16px;
+}
+
+.item-list-item-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.item-list-item-field {
+  margin: 0 0 4px;
+  font-size: var(--body-font-size-s);
+}
+
+.item-list-item-category {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-size: var(--body-font-size-xs);
+}
+
+.item-list-item-price {
+  font-weight: 700;
+}
+
+.item-list-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
